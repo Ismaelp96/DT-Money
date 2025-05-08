@@ -10,14 +10,14 @@ export function Summary() {
 				<S.SummaryCard>
 					<S.SummaryTitle>
 						<span>Entradas</span>
-						<ArrowCircleUp size={26} color={theme['green-500']} />
+						<ArrowCircleUp size={26} color={theme['green-300']} />
 					</S.SummaryTitle>
 					<p>R$ 17.400,00</p>
 				</S.SummaryCard>
 				<S.SummaryCard>
 					<S.SummaryTitle>
 						<span>Saídas</span>
-						<ArrowCircleDown size={26} color={theme['red-500']} />
+						<ArrowCircleDown size={26} color={theme['red-300']} />
 					</S.SummaryTitle>
 					<p>R$ 1.259,00</p>
 				</S.SummaryCard>
