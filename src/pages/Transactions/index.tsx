@@ -1,5 +1,6 @@
 import * as S from './style';
 
+// import { NewTransaction } from '../../components/NewTransaction';
 import { Header } from '../../components/Header/Header';
 import { Summary } from '../../components/Summary';
 import { SearchForm } from '../../components/SearchForm';
@@ -30,6 +31,7 @@ export function Transactions() {
 					</S.TableRow>
 				</S.Table>
 			</S.TableTransactionsContainer>
+			{/* <NewTransaction /> */}
 		</div>
 	);
 }

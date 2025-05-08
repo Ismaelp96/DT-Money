@@ -17,11 +17,17 @@ export const Table = styled.table`
 
 export const TableRow = styled.tr`
 	background-color: ${({ theme }) => theme['gray-700']};
-
 	td {
 		color: ${({ theme }) => theme['gray-300']};
 		padding: 2rem 3.2rem;
-		border-radius: 5px;
+
+		&:first-child {
+			border-radius: 6px 0 0 6px;
+		}
+
+		&:last-child {
+			border-radius: 0 6px 6px 0;
+		}
 	}
 `;
 

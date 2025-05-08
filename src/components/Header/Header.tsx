@@ -1,6 +1,7 @@
 import * as S from './styles';
 
 import Logo from '../../assets/logo.svg';
+import { TransactionBtn } from '../Button';
 
 export function Header() {
 	return (
@@ -10,7 +11,7 @@ export function Header() {
 					<img src={Logo} alt='DT Money' title='DT Money' />
 					<h1>DT Money</h1>
 				</S.HeaderLogo>
-				<S.NewTransactionButton>Nova Transação</S.NewTransactionButton>
+				<TransactionBtn>Nova Transação</TransactionBtn>
 			</S.HeaderContent>
 		</S.HeaderContainer>
 	);
