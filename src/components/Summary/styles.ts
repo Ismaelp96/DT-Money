@@ -3,7 +3,6 @@ import { Container } from '../../styles/global';
 
 export const SummaryContainer = styled.div`
 	width: 100%;
-	padding-bottom: 5.5rem;
 	position: relative;
 	&::after {
 		content: '';
