@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
 *{
@@ -30,4 +30,16 @@ body, input, textarea, button {
   font: 400 1.6rem Roboto, sans-serif;
 }
 
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+`;
+
+export const Container = styled.div`
+	width: 100%;
+	max-width: 123rem;
+	padding: 0 1.5rem;
+	margin: 0 auto;
 `;
