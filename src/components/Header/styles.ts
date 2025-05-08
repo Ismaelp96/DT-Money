@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Container } from '../styles/global';
+import { Container } from '../../styles/global';
 
 export const HeaderContainer = styled.header`
 	width: 100%;
