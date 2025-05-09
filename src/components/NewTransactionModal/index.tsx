@@ -3,7 +3,6 @@ import * as Dialog from '@radix-ui/react-dialog';
 
 import * as S from './styles';
 
-import { TransactionBtn } from '../Button';
 import { TextInput } from '../Input';
 import { useTheme } from 'styled-components';
 
@@ -12,8 +11,8 @@ export function NewTransactionModal() {
 	return (
 		<Dialog.Portal>
 			<S.Overlay />
-			<S.Content>
-				<S.CloseButton>
+			<S.Content aria-describedby=''>
+				<S.CloseButton asChild>
 					<X size={24} color={theme['gray-500']} />
 				</S.CloseButton>
 				<Dialog.Title>Nova Transação</Dialog.Title>
@@ -33,7 +32,7 @@ export function NewTransactionModal() {
 							<span>Saída</span>
 						</S.TransactionTypeButton>
 					</S.TransactionTypes>
-					<TransactionBtn type='submit'>Cadastrar</TransactionBtn>
+					<S.TransactionButton>Cadastrar</S.TransactionButton>
 				</form>
 			</S.Content>
 		</Dialog.Portal>

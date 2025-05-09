@@ -46,6 +46,7 @@ export const CloseButton = styled(Dialog.Close)`
 	top: 2rem;
 	right: 2rem;
 	line-height: 0;
+	cursor: pointer;
 	&:hover {
 		opacity: 0.8;
 		transition: opacity 0.2s ease;
@@ -107,5 +108,22 @@ export const TransactionTypeButton = styled(
 		svg {
 			color: ${({ theme }) => theme.white};
 		}
+	}
+`;
+
+export const TransactionButton = styled(Dialog.Close)`
+	font-weight: bold;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	height: 5rem;
+	padding: 0 2rem;
+	background-color: ${({ theme }) => theme['green-500']};
+	color: ${({ theme }) => theme.white};
+	border-radius: 6px;
+	cursor: pointer;
+	&:hover {
+		background-color: ${({ theme }) => theme['green-300']};
+		transition: background-color 0.2s ease;
 	}
 `;

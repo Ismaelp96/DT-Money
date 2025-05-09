@@ -5,6 +5,7 @@ import { Summary } from '../../components/Summary';
 import { SearchForm } from '../../components/SearchForm';
 
 export function Transactions() {
+	fetch('http://localhost:3333/transactions').then((res) => console.log(res));
 	return (
 		<div>
 			<Header />

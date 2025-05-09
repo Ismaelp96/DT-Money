@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import * as Dialog from '@radix-ui/react-dialog';
 import { Container } from '../../styles/global';
 
 export const HeaderContainer = styled.header`
@@ -23,5 +24,21 @@ export const HeaderLogo = styled.div`
 	img {
 		width: 4rem;
 		height: 4rem;
+	}
+`;
+
+export const TransactionButton = styled(Dialog.Trigger)`
+	font-weight: bold;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	height: 5rem;
+	padding: 0 2rem;
+	background-color: ${({ theme }) => theme['green-500']};
+	color: ${({ theme }) => theme.white};
+	border-radius: 6px;
+	&:hover {
+		background-color: ${({ theme }) => theme['green-300']};
+		transition: background-color 0.2s ease;
 	}
 `;
