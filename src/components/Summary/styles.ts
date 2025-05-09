@@ -50,7 +50,7 @@ export const SummaryCard = styled.div<SummaryCardProps>`
 
 const COLORS_TITLE = {
 	green: 'green-300',
-	white: 'white',
+	white: 'gray-300',
 	red: 'red-300',
 } as const;
 
@@ -62,7 +62,7 @@ export const SummaryTitle = styled.header<SummaryTitleProps>`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	color: ${({ theme }) => theme['gray-300']};
+	color: ${(props) => props.theme['gray-300']};
 
 	svg {
 		color: ${(props) => props.theme[COLORS_TITLE[props.variant]]};
