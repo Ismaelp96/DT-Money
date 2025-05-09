@@ -1,9 +1,7 @@
 import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar } from 'phosphor-react';
 import * as S from './styles';
-import { useTheme } from 'styled-components';
 
 export function Summary() {
-	const theme = useTheme();
 	return (
 		<S.SummaryContainer>
 			<S.SummaryContent>
