@@ -69,6 +69,27 @@ export const TransactionTypes = styled(RadioGroup.Root)`
 	width: 100%;
 `;
 
+export const TextInput = styled.input`
+	flex: 1;
+	height: 5.4rem;
+	background-color: ${({ theme }) => theme['gray-900']};
+	border-radius: 6px;
+	outline: transparent;
+	outline-width: 1px;
+	border: 0;
+	padding: 1.6rem;
+	color: ${({ theme }) => theme['gray-300']};
+	&::placeholder {
+		color: ${({ theme }) => theme['gray-500']};
+	}
+	&:hover {
+		outline: ${({ theme }) => theme['green-300']};
+	}
+	&:focus {
+		outline: ${({ theme }) => theme['green-300']};
+	}
+`;
+
 interface TransactionTypeButtonProps {
 	variant: 'income' | 'outcome';
 }
@@ -122,7 +143,11 @@ export const TransactionButton = styled(Dialog.Close)`
 	color: ${({ theme }) => theme.white};
 	border-radius: 6px;
 	cursor: pointer;
-	&:hover {
+	&:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+	&:not(:disabled):hover {
 		background-color: ${({ theme }) => theme['green-300']};
 		transition: background-color 0.2s ease;
 	}

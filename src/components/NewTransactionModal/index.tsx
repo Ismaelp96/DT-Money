@@ -1,12 +1,35 @@
-import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react';
 import * as Dialog from '@radix-ui/react-dialog';
+import * as z from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react';
 
 import * as S from './styles';
 
-import { TextInput } from '../Input';
 import { useTheme } from 'styled-components';
 
+const NewTransactionModalSchema = z.object({
+	description: z.string(),
+	price: z.number(),
+	category: z.string(),
+	type: z.enum(['income', 'outcome']),
+});
+
+type NewTransactionFormInputs = z.infer<typeof NewTransactionModalSchema>;
+
 export function NewTransactionModal() {
+	const {
+		register,
+		handleSubmit,
+		formState: { isSubmitting },
+	} = useForm<NewTransactionFormInputs>({
+		resolver: zodResolver(NewTransactionModalSchema),
+	});
+
+	async function handleCreateNewTransaction(data: NewTransactionFormInputs) {
+		await new Promise((resolve) => setTimeout(resolve, 2000));
+		console.log(data);
+	}
 	const theme = useTheme();
 	return (
 		<Dialog.Portal>
@@ -16,23 +39,46 @@ export function NewTransactionModal() {
 					<X size={24} color={theme['gray-500']} />
 				</S.CloseButton>
 				<Dialog.Title>Nova Transação</Dialog.Title>
-				<form>
+				<form onSubmit={handleSubmit(handleCreateNewTransaction)}>
 					<S.InputContent>
-						<TextInput placeholder='Descrição' required={true} />
-						<TextInput placeholder='Preço' required={true} />
-						<TextInput placeholder='Categoria' required={true} />
+						<S.TextInput
+							placeholder='Descrição'
+							type='text'
+							required
+							{...register('description')}
+						/>
+						<S.TextInput
+							placeholder='Preço'
+							type='number'
+							required
+							{...register('price', { valueAsNumber: true })}
+						/>
+						<S.TextInput
+							placeholder='Categoria'
+							type='text'
+							required
+							{...register('category')}
+						/>
 					</S.InputContent>
 					<S.TransactionTypes>
-						<S.TransactionTypeButton variant='income' value='income'>
+						<S.TransactionTypeButton
+							variant='income'
+							value='income'
+							{...register('type')}>
 							<ArrowCircleUp size={24} />
 							<span>Entrada</span>
 						</S.TransactionTypeButton>
-						<S.TransactionTypeButton variant='outcome' value='outcome'>
+						<S.TransactionTypeButton
+							variant='outcome'
+							value='outcome'
+							{...register('type')}>
 							<ArrowCircleDown size={24} />
 							<span>Saída</span>
 						</S.TransactionTypeButton>
 					</S.TransactionTypes>
-					<S.TransactionButton>Cadastrar</S.TransactionButton>
+					<S.TransactionButton type='submit' disabled={isSubmitting}>
+						{isSubmitting ? 'cadastrando...' : 'Cadastrar'}
+					</S.TransactionButton>
 				</form>
 			</S.Content>
 		</Dialog.Portal>
