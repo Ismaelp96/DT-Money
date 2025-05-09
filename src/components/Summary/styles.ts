@@ -48,9 +48,23 @@ export const SummaryCard = styled.div<SummaryCardProps>`
 		`}
 `;
 
-export const SummaryTitle = styled.header`
+const COLORS_TITLE = {
+	green: 'green-300',
+	white: 'white',
+	red: 'red-300',
+} as const;
+
+interface SummaryTitleProps {
+	variant: keyof typeof COLORS_TITLE;
+}
+
+export const SummaryTitle = styled.header<SummaryTitleProps>`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	color: ${({ theme }) => theme['gray-300']};
+
+	svg {
+		color: ${(props) => props.theme[COLORS_TITLE[props.variant]]};
+	}
 `;
