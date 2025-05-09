@@ -1,11 +1,29 @@
+import { useEffect, useState } from 'react';
 import * as S from './style';
 
 import { Header } from '../../components/Header/Header';
 import { Summary } from '../../components/Summary';
 import { SearchForm } from '../../components/SearchForm';
 
+interface Transaction {
+	id: number;
+	description: string;
+	type: 'income' | 'outcome';
+	category: string;
+	price: number;
+	createdAt: string;
+}
+
 export function Transactions() {
-	fetch('http://localhost:3333/transactions').then((res) => console.log(res));
+	const [transactions, setTransactions] = useState<Transaction[]>([]);
+	async function LoadTransactions() {
+		const res = await fetch('http://localhost:3333/transactions');
+		const data = await res.json();
+		setTransactions(data);
+	}
+	useEffect(() => {
+		LoadTransactions();
+	}, []);
 	return (
 		<div>
 			<Header />
@@ -14,26 +32,20 @@ export function Transactions() {
 			<S.TableTransactionsContainer>
 				<S.Table>
 					<tbody>
-						<S.TableRow>
-							<td width='50%'>Desenvolvimento de site</td>
-							<td>
-								<S.PriceHighlight variant='income'>
-									R$ 12.000,00
-								</S.PriceHighlight>
-							</td>
-							<td>Venda</td>
-							<td>13/04/2022</td>
-						</S.TableRow>
-						<S.TableRow>
-							<td width='50%'>Hamburger</td>
-							<td>
-								<S.PriceHighlight variant='outcome'>
-									- R$ 59,00
-								</S.PriceHighlight>
-							</td>
-							<td>Alimentação</td>
-							<td>13/04/2022</td>
-						</S.TableRow>
+						{transactions.map((transaction) => {
+							return (
+								<S.TableRow key={transaction.id}>
+									<td width='50%'>{transaction.description}</td>
+									<td>
+										<S.PriceHighlight variant={transaction.type}>
+											R$ {transaction.price.toFixed(2)}
+										</S.PriceHighlight>
+									</td>
+									<td>{transaction.category}</td>
+									<td>{transaction.createdAt}</td>
+								</S.TableRow>
+							);
+						})}
 					</tbody>
 				</S.Table>
 			</S.TableTransactionsContainer>
