@@ -3,8 +3,9 @@ import { TransactionButton } from './styles';
 
 interface TransactionBtnProps {
 	children: ReactNode;
+	type?: 'submit' | 'button';
 }
 
-export function TransactionBtn({ children }: TransactionBtnProps) {
-	return <TransactionButton>{children}</TransactionButton>;
+export function TransactionBtn({ children, type }: TransactionBtnProps) {
+	return <TransactionButton type={type}>{children}</TransactionButton>;
 }

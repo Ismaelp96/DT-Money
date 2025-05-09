@@ -1,4 +1,9 @@
 import styled from 'styled-components';
+import { Container } from '../../styles/global';
+
+export const TransactionSearchContainer = styled(Container)`
+	padding-top: 6.4rem;
+`;
 
 export const TransactionSearch = styled.form`
 	width: 100%;
@@ -24,10 +29,18 @@ export const TransactionSearchButton = styled.button`
 	span {
 		font-weight: bold;
 	}
+
+	svg {
+		color: ${({ theme }) => theme['green-300']};
+	}
+
 	&:hover {
 		border-color: ${({ theme }) => theme['green-500']};
 		background-color: ${({ theme }) => theme['green-500']};
 		color: ${({ theme }) => theme.white};
+		svg {
+			color: ${({ theme }) => theme.white};
+		}
 		transition: all 0.2s ease;
 	}
 `;

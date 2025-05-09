@@ -3,10 +3,10 @@ import { Container } from '../../styles/global';
 
 export const TableTransactionsContainer = styled(Container)`
 	width: 100%;
-	padding-top: 6.4rem;
 	display: flex;
 	flex-direction: column;
 	gap: 2.4rem;
+	margin-top: 2.4rem;
 `;
 
 export const Table = styled.table`

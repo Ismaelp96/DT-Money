@@ -1,27 +1,27 @@
 import styled from 'styled-components';
+import * as Dialog from '@radix-ui/react-dialog';
 
-export const NewTransactionContainer = styled.div`
+export const Overlay = styled(Dialog.Overlay)`
 	position: fixed;
-	top: 0;
-	left: 0;
-	height: 100vh;
 	width: 100vw;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: rgba(0, 0, 0, 0.75);
-	z-index: 0;
+	height: 100vh;
+	inset: 0;
+	background-color: rgba(0, 0, 0, 7.5);
 `;
 
-export const NewTransactionContent = styled.form`
+export const Content = styled(Dialog.Content)`
 	width: 100%;
 	max-width: 53.5rem;
 	padding: 4.8rem;
 	display: flex;
 	flex-direction: column;
-	position: relative;
 	background-color: ${({ theme }) => theme['gray-800']};
-	h3 {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	h2 {
 		font-size: 2.4rem;
 		margin-bottom: 3.2rem;
 		color: ${({ theme }) => theme['gray-100']};
@@ -29,10 +29,11 @@ export const NewTransactionContent = styled.form`
 	}
 `;
 
-export const CloseButton = styled.button`
+export const CloseButton = styled(Dialog.Close)`
 	position: absolute;
 	top: 2rem;
 	right: 2rem;
+	line-height: 0;
 	&:hover {
 		opacity: 0.8;
 		transition: opacity 0.2s ease;
@@ -47,7 +48,7 @@ export const InputContent = styled.div`
 	margin-bottom: 2.4rem;
 `;
 
-export const ButtonContent = styled.div`
+export const TransactionTypes = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 1.6rem;
@@ -55,7 +56,11 @@ export const ButtonContent = styled.div`
 	width: 100%;
 `;
 
-export const ButtonMoviment = styled.button`
+interface TransactionTypeButtonProps {
+	variant?: 'income';
+}
+
+export const TransactionTypeButton = styled.button<TransactionTypeButtonProps>`
 	width: 100%;
 	height: 5.8rem;
 	display: inline-flex;
@@ -66,6 +71,13 @@ export const ButtonMoviment = styled.button`
 	border-radius: 6px;
 	span {
 		color: ${({ theme }) => theme['gray-300']};
+	}
+
+	svg {
+		color: ${(props) =>
+			props.variant === 'income'
+				? props.theme['green-300']
+				: props.theme['red-300']};
 	}
 
 	&:active {
