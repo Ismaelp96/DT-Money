@@ -1,36 +1,44 @@
 {
-	"transactions": [
-		{
-			"id": 1,
-			"description": "Desenvolvimento de site",
-			"type": "income",
-			"category": "Venda",
-			"price": 14000,
-			"createdAt": "2022-07-29T19:36:44.505Z"
-		},
-		{
-			"id": 2,
-			"description": "Hambúrguer",
-			"type": "outcome",
-			"category": "Alimentação",
-			"price": 50,
-			"createdAt": "2022-07-29T19:30:44.505Z"
-		},
-		{
-			"id": 3,
-			"description": "Cursos",
-			"type": "outcome",
-			"category": "Educação",
-			"price": 2250,
-			"createdAt": "2022-07-29T19:30:44.505Z"
-		},
-		{
-			"description": "Desenvolvimento App",
-			"price": 9000,
-			"category": "Venda",
-			"type": "income",
-			"createdAt": "2025-05-12T13:49:59.630Z",
-			"id": 4
-		}
-	]
+  "transactions": [
+    {
+      "id": 1,
+      "description": "Desenvolvimento de site",
+      "type": "income",
+      "category": "Venda",
+      "price": 14000,
+      "createdAt": "2022-07-29T19:36:44.505Z"
+    },
+    {
+      "id": 2,
+      "description": "Hambúrguer",
+      "type": "outcome",
+      "category": "Alimentação",
+      "price": 50,
+      "createdAt": "2022-07-29T19:30:44.505Z"
+    },
+    {
+      "id": 3,
+      "description": "Cursos",
+      "type": "outcome",
+      "category": "Educação",
+      "price": 2250,
+      "createdAt": "2022-07-29T19:30:44.505Z"
+    },
+    {
+      "description": "Desenvolvimento App",
+      "price": 9000,
+      "category": "Venda",
+      "type": "income",
+      "createdAt": "2025-05-12T13:49:59.630Z",
+      "id": 4
+    },
+    {
+      "description": "Gasolina",
+      "price": 200,
+      "category": "Gastos",
+      "type": "outcome",
+      "createdAt": "2025-05-12T17:17:16.569Z",
+      "id": 5
+    }
+  ]
 }
