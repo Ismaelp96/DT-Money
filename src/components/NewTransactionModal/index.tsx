@@ -3,10 +3,12 @@ import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react';
+import { useTheme } from 'styled-components';
+import { useContext } from 'react';
 
 import * as S from './styles';
 
-import { useTheme } from 'styled-components';
+import { TransactionsContext } from '../../contexts/TransactionsContext';
 
 const NewTransactionModalSchema = z.object({
 	description: z.string(),
@@ -18,10 +20,12 @@ const NewTransactionModalSchema = z.object({
 type NewTransactionFormInputs = z.infer<typeof NewTransactionModalSchema>;
 
 export function NewTransactionModal() {
+	const { createTransaction } = useContext(TransactionsContext);
 	const {
 		control,
 		register,
 		handleSubmit,
+		reset,
 		formState: { isSubmitting },
 	} = useForm<NewTransactionFormInputs>({
 		resolver: zodResolver(NewTransactionModalSchema),
@@ -31,8 +35,9 @@ export function NewTransactionModal() {
 	});
 
 	async function handleCreateNewTransaction(data: NewTransactionFormInputs) {
-		await new Promise((resolve) => setTimeout(resolve, 2000));
-		console.log(data);
+		const { description, price, category, type } = data;
+		await createTransaction({ description, price, category, type });
+		reset();
 	}
 	const theme = useTheme();
 	return (
@@ -70,16 +75,13 @@ export function NewTransactionModal() {
 						render={({ field }) => {
 							return (
 								<S.TransactionTypes
-									onVolumeChange={field.onChange}
+									onValueChange={field.onChange}
 									value={field.value}>
 									<S.TransactionTypeButton variant='income' value='income'>
 										<ArrowCircleUp size={24} />
 										<span>Entrada</span>
 									</S.TransactionTypeButton>
-									<S.TransactionTypeButton
-										variant='outcome'
-										value='outcome'
-										onVolumeChange={field.onChange}>
+									<S.TransactionTypeButton variant='outcome' value='outcome'>
 										<ArrowCircleDown size={24} />
 										<span>Saída</span>
 									</S.TransactionTypeButton>
