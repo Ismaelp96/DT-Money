@@ -1,7 +1,7 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react';
 
 import * as S from './styles';
@@ -19,11 +19,15 @@ type NewTransactionFormInputs = z.infer<typeof NewTransactionModalSchema>;
 
 export function NewTransactionModal() {
 	const {
+		control,
 		register,
 		handleSubmit,
 		formState: { isSubmitting },
 	} = useForm<NewTransactionFormInputs>({
 		resolver: zodResolver(NewTransactionModalSchema),
+		defaultValues: {
+			type: 'income',
+		},
 	});
 
 	async function handleCreateNewTransaction(data: NewTransactionFormInputs) {
@@ -60,22 +64,29 @@ export function NewTransactionModal() {
 							{...register('category')}
 						/>
 					</S.InputContent>
-					<S.TransactionTypes>
-						<S.TransactionTypeButton
-							variant='income'
-							value='income'
-							{...register('type')}>
-							<ArrowCircleUp size={24} />
-							<span>Entrada</span>
-						</S.TransactionTypeButton>
-						<S.TransactionTypeButton
-							variant='outcome'
-							value='outcome'
-							{...register('type')}>
-							<ArrowCircleDown size={24} />
-							<span>Saída</span>
-						</S.TransactionTypeButton>
-					</S.TransactionTypes>
+					<Controller
+						control={control}
+						name='type'
+						render={({ field }) => {
+							return (
+								<S.TransactionTypes
+									onVolumeChange={field.onChange}
+									value={field.value}>
+									<S.TransactionTypeButton variant='income' value='income'>
+										<ArrowCircleUp size={24} />
+										<span>Entrada</span>
+									</S.TransactionTypeButton>
+									<S.TransactionTypeButton
+										variant='outcome'
+										value='outcome'
+										onVolumeChange={field.onChange}>
+										<ArrowCircleDown size={24} />
+										<span>Saída</span>
+									</S.TransactionTypeButton>
+								</S.TransactionTypes>
+							);
+						}}
+					/>
 					<S.TransactionButton type='submit' disabled={isSubmitting}>
 						{isSubmitting ? 'cadastrando...' : 'Cadastrar'}
 					</S.TransactionButton>

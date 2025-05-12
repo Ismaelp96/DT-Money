@@ -132,7 +132,7 @@ export const TransactionTypeButton = styled(
 	}
 `;
 
-export const TransactionButton = styled(Dialog.Close)`
+export const TransactionButton = styled.button`
 	font-weight: bold;
 	display: inline-flex;
 	justify-content: center;
